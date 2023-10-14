@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
+import { json } from 'react-router-dom';
 
 export default function Catalog() {
     // Define the state variables
+    const userData = JSON.parse(localStorage.getItem("userData"))
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [search, setSearch] = useState('ps4');
+    const [search, setSearch] = useState('iphone');
     const [dummy, setDummy] = useState('');
     const [modal, setModal] = useState({
         can_compare: true,
@@ -19,7 +21,18 @@ export default function Catalog() {
         product_title: "LG PS-Q19MNZF 1.5 Ton 5 Star",
     }
     )
-
+    const handleToCart = (e)=>{
+        e.preventDefault();
+        const data = {
+            "pid" : modal.product_id,
+            "name" : modal.product_title,
+            "url" : modal.product_image,
+            "price" : modal.product_lowest_price,
+            "email" : userData.email,
+            "category" : modal.product_category
+        }
+        console.log(data);
+    }
     // Use the useEffect hook to fetch data when the 'search' state changes
     useEffect(() => {
         setLoading(true);
@@ -43,6 +56,7 @@ export default function Catalog() {
         <div>
             <NavBar />
             <h1>Store</h1>
+            <div className='d-flex justify-content-center mb-5'>
             <input
                 type="text"
                 value={dummy}
@@ -53,11 +67,12 @@ export default function Catalog() {
             <button className="btn btn-success m-2" onClick={() => setSearch(dummy)}>
                 Search
             </button>
+            </div>
 
             {loading ? (
                 <h2>Loading....</h2>
             ) : (
-                <div class="container-cards" id="product-cards" style={{ display: "flex", flexWrap: "wrap" }}>
+                <div class="container-cards m-5 ml-5 mr-5" id="product-cards" style={{ display: "flex", flexWrap: "wrap" }}>
                     {data.data.map((item, index) => (
                         <div key={index} class="col-md-3 py-3 py-md-0">
                             {/* {console.log(item)} */}
@@ -121,7 +136,8 @@ export default function Catalog() {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <a href={`/product/${modal.product_id}`} class="btn btn-primary">Save changes</a>
+                                    <a href={`/product/${modal.product_id}`} class="btn btn-primary">Know More</a>
+                                    <button onClick={handleToCart} class="btn btn-primary">Add to Cart</button>
                                 </div>
                             </div>
                         </div>

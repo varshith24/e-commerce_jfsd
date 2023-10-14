@@ -86,7 +86,7 @@ import { useNavigate } from 'react-router-dom';
     const data = {username,email,password,url}
     console.log(data)
     await UserService.addUser(data);
-    
+    localStorage.setItem("userData",JSON.stringify(data))
     navigate("/home")
   }
 
@@ -95,7 +95,7 @@ import { useNavigate } from 'react-router-dom';
   };
 
   return (
-    <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
+    <div className={`lcontainer ${isSignUpMode ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">
         <div className="signin-signup">
           <form action="home" className="sign-in-form" onSubmit={handleLogin}>

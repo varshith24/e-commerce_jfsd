@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 
 function ProductData() {
     const { id } = useParams();
@@ -24,48 +25,119 @@ function ProductData() {
 
     return (
         <div>
+            <NavBar />
             {/* <p>ProductData {id}</p> */}
             {data ? (
-                <div >
-                   { data.product_images.map((image)=>(
-                            <img  src={image}/>
+                <div className='container'>
+                    {data.product_images.map((image) => (
+                        <img src={image} />
                     ))}
-                 <div class="row">
-                    {/* {console.log(data)} */}
-                 <div class="col-md-6">
-                     <table class="table table-bordered table-striped table-hover">
-                         <tbody>
-                             <tr>
-                                 <th>product_brand:</th>
-                                 <td>{data.product_brand}</td>
-                             </tr>
-                             <tr>
-                                 <th>product_name :</th>
-                                 <td>{data.product_name}</td>
-                             </tr>
-                             <tr>
-                                 <th>product_model:</th>
-                                 <td>{data.product_model}</td>
-                             </tr>
-                             <tr>
-                                 <th>product_category:</th>
-                                 <td>{data.product_category}</td>
-                             </tr>
-                             <tr>
-                                 <th>product_sub_category:</th>
-                                 <td>{data.product_sub_category}</td>
-                             </tr>
-                             <tr>
-                                 <th>product_ratings:</th>
-                                 <td>{data.product_ratings}<i class="fa-solid fa-star fa-bounce" style={{color: "#c8e65c"}}></i></td>
-                             </tr>
-                         </tbody>
-                     </table>
-                 </div>
-             </div>
-             </div>
+                    <h4>&#x20b9; {data.product_mrp}</h4>
+                    <div className='container'>
+                        <div class="row">
+                            {/* {console.log(data)} */}
+                            <div class="col-md-6">
+                                <table class="table table-bordered table-striped table-hover d-flex justify-content-center">
+                                    <tbody>
+                                        <tr>
+                                            <th>product brand:</th>
+                                            <td>{data.product_brand}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>product name :</th>
+                                            <td>{data.product_name}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>product model:</th>
+                                            <td>{data.product_model}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>product category:</th>
+                                            <td>{data.product_category}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>product sub category:</th>
+                                            <td>{data.product_sub_category}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>product ratings:</th>
+                                            <td>{data.product_ratings}<span style={{ fontSize: "150%", color: "yellow" }}>&#9733;</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Available Colors :</th>
+                                            <td>{data.available_colors.join(", ")}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h3 className='mb-3'>Store Comparisons :</h3>
+                                <div className='d-flex'>
+                                {data.stores.map((store, index) => {
+                                    const storeName = Object.keys(store)[0];
+                                    const storeData = store[storeName];
+                                    if (storeData.product_store) {
+                                        return (
+                                            <div key={index} className='m-5' >
+                                                {/* <h4>{storeData.product_store}</h4> */}
+                                                <div className="store-link">
+                                                    <a
+                                                        href={storeData.product_store_url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <img
+                                                            src={storeData.product_store_logo}
+                                                            alt={`${storeData.product_store} Logo`}
+                                                            className="store-logo"
+                                                        />
+                                                    </a>
+                                                </div>
+                                                <table className="comparison-table table table-bordered table-striped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Attribute</th>
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Price</td>
+                                                            <td>{storeData.product_price}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Offer</td>
+                                                            <td>{storeData.product_offer == ""? 0 :storeData.product_offer }</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Color</td>
+                                                            <td>{storeData.product_color}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Delivery Cost</td>
+                                                            <td>{storeData.product_delivery_cost}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Return Time</td>
+                                                            <td>{storeData.return_time}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             ) : (
-                <p>Loading...</p>
+                <div class="text-center d-flex justify-content-center align-items-center">
+                    <div class="spinner-border " role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             )}
         </div>
     );

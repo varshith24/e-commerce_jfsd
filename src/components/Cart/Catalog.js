@@ -31,7 +31,7 @@ export default function Catalog() {
             .then((res) => {
                 setData(res);
                 setLoading(false); // Hide loading message after data is fetched
-                console.log(data.data)
+                // console.log(data.data)
             })
             .catch((error) => {
                 console.error(error);
@@ -121,7 +121,7 @@ export default function Catalog() {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <a href={`/product/${modal.product_id}`} class="btn btn-primary">Save changes</a>
                                 </div>
                             </div>
                         </div>

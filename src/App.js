@@ -5,7 +5,7 @@ import Catalog from './components/Cart/Catalog';
 import ProductData from './components/Cart/ProductData';
 import Profile from './components/Profile/Profile';
 import WatchList from './components/Cart/WatchList';
-import PageNotFound from './components/404 Not found/PageNotFound';
+import PageNotFound from './components/Error/PageNotFound';
 
 function App() {
   return (

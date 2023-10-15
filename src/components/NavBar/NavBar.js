@@ -24,9 +24,9 @@ export default function NavBar() {
                             <Link to="/pricing" className="nav-link">Pricing</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown link
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><Link to="/action" className="dropdown-item">Action</Link></li>
                                 <li><Link to="/another-action" className="dropdown-item">Another action</Link></li>
@@ -37,14 +37,14 @@ export default function NavBar() {
                 </div>
                 {/* Adding right */}
                 <div className="d-flex align-items-center justify-content-end">
-                    <Link to="/shopping-cart" className="text-reset me-3">
-                        <i className="fas fa-shopping-cart"></i>
+                    <Link to="/watchlist" className="text-reset me-3">
+                        <i className="fas fa-shopping-cart" style={{fontSize:"150%"}}></i>
                     </Link>
 
                     <div className="dropdown">
-                        <a
+                        <Link
                             className="text-reset me-3 dropdown-toggle"
-                            href="#"
+                            to="#"
                             id="navbarDropdownMenuLink"
                             role="button"
                             data-bs-toggle="dropdown"
@@ -52,23 +52,23 @@ export default function NavBar() {
                         >
                             <i className="fas fa-bell"></i>
                             <span className="badge rounded-pill bg-danger">1</span>
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a className="dropdown-item" href="#">Some news</a>
+                                <Link className="dropdown-item" to="#">Some news</Link>
                             </li>
                             <li>
-                                <a className="dropdown-item" href="#">Another news</a>
+                                <Link className="dropdown-item" to="#">Another news</Link>
                             </li>
                             <li>
-                                <a className="dropdown-item" href="#">Something else here</a>
+                                <Link className="dropdown-item" to="#">Something else here</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="dropdown">
-                        <a
+                        <Link
                             className="dropdown-toggle d-flex align-items-center"
-                            href="#"
+                            to="#"
                             id="navbarDropdownMenuAvatar"
                             role="button"
                             data-bs-toggle="dropdown"
@@ -77,20 +77,20 @@ export default function NavBar() {
                             
                             <img
                                 src={data.url}
-                                className=" img-lg rounded-circle"
-
+                                className=" img-xl rounded-circle"
+                                
                                 height="40"
-                                alt="Black and White Portrait of a Man"
+                                alt="Black and White Portrait of Link Man"
                                 loading="lazy"
                             />
                             
-                        </a>
+                        </Link>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <a className="dropdown-item" href="/user">My profile</a>
+                                <Link className="dropdown-item" to="/user">My profile</Link>
                             </li>
                             <li>
-                                <a className="dropdown-item" href="#">Settings</a>
+                                <Link className="dropdown-item" to="#">Settings</Link>
                             </li>
                             <li>
                                 <Link className="dropdown-item" to="/">Logout</Link>

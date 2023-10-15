@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
 import ProductService from '../../services/ProductService';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 export default function Catalog() {
     // Define the state variables
     const userData = JSON.parse(localStorage.getItem("userData"))
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [search, setSearch] = useState('iphone');
+    const [search, setSearch] = useState('phone');
     const [dummy, setDummy] = useState('');
     const [modal, setModal] = useState({
         can_compare: true,
@@ -33,7 +34,7 @@ export default function Catalog() {
         }
         // console.log(data);
          ProductService.saveUser(data);
-        toast.success('🦄 Wow so easy!', {
+        toast.success('🦄 Data Added to Cart!', {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -66,7 +67,7 @@ export default function Catalog() {
     return (
         <div>
             <NavBar />
-            <h1>Store</h1>
+           <div className='text-align-center mb-5' style={{textAlign:"center", textDecoration:"underline"}}> <h1 className='text-align-center'>Store</h1></div>
             <div className='d-flex justify-content-center mb-5'>
             <input
                 type="text"
@@ -81,17 +82,17 @@ export default function Catalog() {
             </div>
 
             {loading ? (
-                <h2>Loading....</h2>
+                <div class="spinner-border text-align-center" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             ) : (
                 <div class="container-cards m-5 ml-5 mr-5" id="product-cards" style={{ display: "flex", flexWrap: "wrap" }}>
                     {data.data.map((item, index) => (
                         <div key={index} class="col-md-3 py-3 py-md-0">
                             {/* {console.log(item)} */}
                             <div class="card">
-                                <img src={item.product_image} alt="" style={{
-                                    width: '100%', // Set the width to 100% to ensure images fill the container
-                                    height: '200px' // Set a fixed height for all images (adjust as needed)
-                                }} />
+                                <img src={item.product_image} alt={item.product_title} 
+                                />
                                 <div class="card-body">
                                     <h3 class="text-center">{item.product_title}</h3>
                                     <p class="text-center">Category : {item.product_category}</p>
@@ -122,7 +123,7 @@ export default function Catalog() {
                                 </div>
                                 <div class="modal-body ">
                                     <div className='d-flex justify-content-center align-items-center'>
-                                        <img src={modal.product_image}  />
+                                        <img src={modal.product_image} alt='' />
                                     </div>
                                     <table className="table table-bordered table-striped table-hover">
                                         <thead className='bg-info text-white'>
@@ -147,7 +148,7 @@ export default function Catalog() {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <a href={`/product/${modal.product_id}`} class="btn btn-primary">Know More</a>
+                                    <Link to={`/product/${modal.product_id}`} class="btn btn-primary">Know More</Link>
                                     <button onClick={handleToCart} class="btn btn-primary">Add to Cart</button>
                                 </div>
                             </div>

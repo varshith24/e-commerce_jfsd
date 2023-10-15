@@ -5,6 +5,7 @@ import Catalog from './components/Cart/Catalog';
 import ProductData from './components/Cart/ProductData';
 import Profile from './components/Profile/Profile';
 import WatchList from './components/Cart/WatchList';
+import PageNotFound from './components/404 Not found/PageNotFound';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/product/:id' element={<ProductData/>}/>
           <Route path='/user/' element={<Profile/>}/>
           <Route path='/watchlist' element={<WatchList/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </BrowserRouter>
     </div>

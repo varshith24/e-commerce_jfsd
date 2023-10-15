@@ -28,7 +28,7 @@ import { useNavigate } from 'react-router-dom';
         console.log(dt);
         const response = await UserService.getLoginEmail(email, dt);
         setData(response.data);
-  
+        console.log(data)
         if (data != null) {
           if (data.email === "1") {
             console.log("Not Found");

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Catalog from './components/Cart/Catalog';
 import ProductData from './components/Cart/ProductData';
 import Profile from './components/Profile/Profile';
+import WatchList from './components/Cart/WatchList';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/home' element={<Catalog/>}/>
           <Route path='/product/:id' element={<ProductData/>}/>
           <Route path='/user/' element={<Profile/>}/>
+          <Route path='/watchlist' element={<WatchList/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
-import { json } from 'react-router-dom';
-
+import ProductService from '../../services/ProductService';
+import { ToastContainer, toast } from 'react-toastify';
 export default function Catalog() {
     // Define the state variables
     const userData = JSON.parse(localStorage.getItem("userData"))
@@ -21,7 +21,7 @@ export default function Catalog() {
         product_title: "LG PS-Q19MNZF 1.5 Ton 5 Star",
     }
     )
-    const handleToCart = (e)=>{
+    const handleToCart =  (e)=>{
         e.preventDefault();
         const data = {
             "pid" : modal.product_id,
@@ -31,7 +31,18 @@ export default function Catalog() {
             "email" : userData.email,
             "category" : modal.product_category
         }
-        console.log(data);
+        // console.log(data);
+         ProductService.saveUser(data);
+        toast.success('🦄 Wow so easy!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
     }
     // Use the useEffect hook to fetch data when the 'search' state changes
     useEffect(() => {
@@ -144,6 +155,18 @@ export default function Catalog() {
                     </div>
                 </div>
             )}
+            <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
         </div>
     );
 }

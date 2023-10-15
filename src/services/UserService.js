@@ -6,7 +6,7 @@ class UserService {
     addUser(user) {
         return axios.post(`${URL}/save`, user)
     }
-    getLoginEmail(email, data) {
+    async getLoginEmail(email, data) {
        return  axios.post(`${URL}/email/${email}`, data)
     }
 }

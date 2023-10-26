@@ -18,9 +18,7 @@ function ProductData() {
             }
         };
 
-        fetchData(); // Call the fetchData function inside useEffect.
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        fetchData();
     }, [id]);
 
     return (
@@ -34,10 +32,10 @@ function ProductData() {
                     ))}
                     <h4>&#x20b9; {data.product_mrp}</h4>
                     <div className='container'>
-                        <div class="row">
+                        <div className="row">
                             {/* {console.log(data)} */}
-                            <div class="col-md-6">
-                                <table class="table table-bordered table-striped table-hover d-flex justify-content-center">
+                            <div className="col-md-6">
+                                <table className="table table-bordered table-striped table-hover d-flex justify-content-center">
                                     <tbody>
                                         <tr>
                                             <th>product brand:</th>
@@ -133,11 +131,7 @@ function ProductData() {
                     </div>
                 </div>
             ) : (
-                <div class="text-center">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
+                <h2>Loading...</h2>
             )}
         </div>
     );

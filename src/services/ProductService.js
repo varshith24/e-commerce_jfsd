@@ -6,7 +6,7 @@ class ProductService
 {
     async saveUser(data)
     {
-        await axios.post(`${URL}/save`,data)
+        return await axios.post(`${URL}/save`,data)
     }
     async getData(email)
     {

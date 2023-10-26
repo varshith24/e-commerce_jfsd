@@ -66,9 +66,7 @@ export default function WatchList() {
               </div>
             ))
           ) : (
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
+            <h2>Loading...</h2>
           )}
         </div>
       </div>

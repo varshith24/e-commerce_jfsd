@@ -93,11 +93,13 @@ export default function Catalog() {
                                         <i className="fa-solid fa-star checked"></i>
                                     </div>
                                     <h2>₹{item.product_lowest_price}</h2>
-                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {
+                                    {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {
                                         setModal(item);
                                     }}>
                                         Know More
-                                    </button>
+                                    </button> */}
+                                    <Link to={`/product/${item.product_id}`} className="btn btn-primary">Know More</Link>
+
                                 </div>
                             </div>
                         </div>
@@ -105,48 +107,7 @@ export default function Catalog() {
                 </div>
             )}
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">{modal ? modal.product_title : ''}</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            {modal && (
-                                <>
-                                    <div className='d-flex justify-content-center align-items-center'>
-                                        <img src={modal.product_image} alt='' />
-                                    </div>
-                                    <table className="table table-bordered table-striped table-hover">
-                                        <thead className='bg-info text-white'>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Title</th>
-                                                <th>Category</th>
-                                                <th>Price (₹)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr key={modal.product_id}>
-                                                <td>{modal.product_id}</td>
-                                                <td>{modal.product_title}</td>
-                                                <td>{modal.product_category}</td>
-                                                <td>₹{modal.product_lowest_price}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <Link to={`/product/${modal.product_id}`} className="btn btn-primary">Know More</Link>
-                                        <button onClick={handleToCart} className="btn btn-success">Add to Cart <i className="fas fa-shopping-cart" style={{ fontSize: "150%" }}></i></button>
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
             <ToastContainer
                 position="top-right"

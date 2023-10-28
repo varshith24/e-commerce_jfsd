@@ -43,7 +43,6 @@ function ProductData() {
     const handleThumbsClick = (index) => () => {
         setActiveIndex(index);
     };
-
     return (
         <div>
             <NavBar />

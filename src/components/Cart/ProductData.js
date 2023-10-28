@@ -80,7 +80,9 @@ function ProductData() {
                                         <button
                                             className={`thumb col-3 col-sm-2 px-1 py-2 ${activeIndex === index ? 'selected' : ''}`}
                                             key={index}
+                                            onMouseOver={handleThumbsClick(index)}
                                             onClick={handleThumbsClick(index)}
+
                                         >
                                             <img src={image} className="img-fluid" alt={`Thumbnail ${index + 1}`} />
                                         </button>

@@ -7,6 +7,7 @@ import Profile from './components/Profile/Profile';
 import WatchList from './components/Cart/WatchList';
 import PageNotFound from './components/Error/PageNotFound';
 import AllFeedBacks from './components/FeedBack/AllFeedBacks';
+import MyCarousel from './components/extra/Corousel';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/user/' element={<Profile/>}/>
           <Route path='/watchlist' element={<WatchList/>}/>
           <Route path='/feedback' element={<AllFeedBacks/>}/>
+          <Route path='/corou' element={<MyCarousel/>}/>
           <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </BrowserRouter>

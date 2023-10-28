@@ -50,7 +50,6 @@ function ProductData() {
             {data ? (
                 <div className='container d-flex'>
                     <div className="container m-5" style={{ maxWidth: '800px' }}>
-                      
                        <div className="carousel-container position-relative row p-5" style={{background : "#fff" , borderRadius : "0.7em"}}>
                        <div  className=''>
                             <div

@@ -61,17 +61,19 @@ export default function Catalog() {
             <div className='text-align-center mb-5' style={{ textAlign: "center", textDecoration: "underline" }}>
                 <h1 className='text-align-center'>Store</h1>
             </div>
-            <div className='d-flex justify-content-center mb-5'>
+            <div className='d-flex justify-content-center input-group mb-3'>
                 <input
+                    className='form-control'
                     type="text"
                     value={dummy}
                     name="search"
                     onChange={(e) => {
                         setDummy(e.target.value);
-                    }} />
-                <button className="btn btn-success m-2" onClick={() => setSearch(dummy)}>
+                    }}  style={{maxWidth : "500px"}}/>
+                    <button className="btn  btn btn-primary m-2" onClick={() => setSearch(dummy)}>
                     Search
                 </button>
+                
             </div>
 
             {loading ? (

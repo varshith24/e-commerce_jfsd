@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import './ProductData.css'; // Ensure that you have the correct CSS file imported.
+import PriceTable from './ProductDataComponents/PriceTable';
+import StoreDataTable from './ProductDataComponents/StoreDataTable';
 
 function ProductData() {
     const { id } = useParams();
@@ -12,20 +14,13 @@ function ProductData() {
     const carouselThumbs = useRef(null);
 
     // const color = [ "primary", "secondary", "success", "danger", "warning", "info" ]
-    const color = [ "primary", "secondary", "success", "danger", "warning", "info" ]
-
-    const randomColor = () =>{
-        const res = "table-"+color[Math.floor(Math.random() * color.length)]
-        // console.log(res)
-        return res
-    }
+    
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`https://price-api.datayuge.com/api/v1/compare/detail?id=${id}&api_key=4N9jvDnwnxSEN4lqkBHiVQ8SZXS3KWSUJnz`);
                 setData(response.data.data);
-                console.log(data);
             } catch (error) {
                 console.error(error);
             }
@@ -58,7 +53,7 @@ function ProductData() {
             {data ? (
                 <div className='container d-flex'>
                     <div className="container m-5" style={{ maxWidth: '800px', margin: "100rem" }}>
-                        <div className="carousel-container position-relative row p-5" style={{ background: "#fff", borderRadius: "0.7em", backdropFilter : blur(0.3) }}>
+                        <div className="carousel-container position-relative row p-5" style={{ background: "#fff", borderRadius: "0.7em"}}>
                             <div className=''>
                                 <div
                                     id="myCarousel"
@@ -119,51 +114,15 @@ function ProductData() {
                             </div>
                         </div>
                     </div>
-
                     <div className='container'>
                         <div className="row">
                             <div className="col-md-6">
                                 <h4 className='mt-4 text-light'>&#x20b9; {data.product_mrp}</h4>
                                 <div className="p-3" style={{ backgroundColor: "#fff", width: '680px', borderRadius: "0.7em" }}>
-                                    <table className="table table-bordered table-striped table-hover  " style={{ width: '650px' }}>
-                                        <tbody>
-                                            <tr className={randomColor()}>
-                                                <th>Product Brand:</th>
-                                                <td>{data.product_brand}</td>
-                                            </tr>
-                                            <tr className={randomColor()}>
-                                                <th>Product Name:</th>
-                                                <td>{data.product_name}</td>
-                                            </tr>
-                                            <tr className={randomColor()}>
-                                                <th>Product Model:</th>
-                                                <td>{data.product_model}</td>
-                                            </tr>
-                                            <tr className={randomColor()}>
-                                                <th>Product Category:</th>
-                                                <td>{data.product_category}</td>
-                                            </tr>
-                                            <tr className={randomColor()}>
-                                                <th>Product Sub Category:</th>
-                                                <td>{data.product_sub_category}</td>
-                                            </tr>
-                                            <tr className={randomColor()}>
-                                                <th>Product Ratings:</th>
-                                                <td>
-                                                    {data.product_ratings}
-                                                    <span style={{ fontSize: "150%", color: "yellow" }}> <span className= {`${randomColor()}`} > &#9733;</span></span>
-                                                </td>
-                                            </tr>
-                                            <tr className={randomColor()}>
-                                                <th>Available Colors:</th>
-                                                <td>{data.available_colors.join(", ")}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                   <PriceTable data = {data}/>
                                 </div>
                             </div>
                         </div>
-
                         <h3 className=''>Store Comparisons:</h3>
                         <div className='d-flex'>
                             {data.stores.map((store, index) => {
@@ -172,51 +131,7 @@ function ProductData() {
                                 if (storeData.product_store) {
                                     return (
                                         <div key={index} className='m-3'>
-                                            <div>
-                                                <div className="store-link">
-                                                    <Link
-                                                        to={storeData.product_store_url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        <img
-                                                            src={storeData.product_store_logo}
-                                                            alt={`${storeData.product_store} Logo`}
-                                                            className="store-logo"
-                                                        />
-                                                    </Link>
-                                                </div>
-                                                <table className="comparison-table table table-bordered table-striped table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Attribute</th>
-                                                            <th>Value</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Price</td>
-                                                            <td>{storeData.product_price}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Offer</td>
-                                                            <td>{storeData.product_offer === "" ? 0 : storeData.product_offer}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Color</td>
-                                                            <td>{storeData.product_color}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Delivery Cost</td>
-                                                            <td>{storeData.product_delivery_cost}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Return Time</td>
-                                                            <td>{storeData.return_time}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <StoreDataTable storeData={storeData}/>
                                         </div>
                                     );
                                 }

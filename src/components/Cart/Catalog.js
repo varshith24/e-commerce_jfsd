@@ -11,32 +11,32 @@ export default function Catalog() {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('phone');
     const [dummy, setDummy] = useState('');
-    const [modal, setModal] = useState(null);
+    // const [modal, setModal] = useState(null);
 
-    const handleToCart = (e) => {
-        e.preventDefault();
-        if (modal) {
-            const data = {
-                "pid": modal.product_id,
-                "name": modal.product_title,
-                "url": modal.product_image,
-                "price": modal.product_lowest_price,
-                "email": userData.email,
-                "category": modal.product_category
-            };
-            ProductService.saveUser(data);
-            toast.success('🛒 Data Added to Cart!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
-    }
+    // const handleToCart = (e) => {
+    //     e.preventDefault();
+    //     if (modal) {
+    //         const data = {
+    //             "pid": modal.product_id,
+    //             "name": modal.product_title,
+    //             "url": modal.product_image,
+    //             "price": modal.product_lowest_price,
+    //             "email": userData.email,
+    //             "category": modal.product_category
+    //         };
+    //         ProductService.saveUser(data);
+    //         toast.success('🛒 Data Added to Cart!', {
+    //             position: "top-right",
+    //             autoClose: 5000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //             theme: "colored",
+    //         });
+    //     }
+    // }
 
     useEffect(() => {
         setLoading(true);
@@ -48,7 +48,7 @@ export default function Catalog() {
             .then((res) => {
                 setData(res);
                 setLoading(false);
-            })
+            }).then(console.log(data))
             .catch((error) => {
                 console.error(error);
                 setLoading(false);
@@ -58,11 +58,16 @@ export default function Catalog() {
     return (
         <div>
             <NavBar />
-            <div className='text-align-center mb-5' style={{ textAlign: "center", textDecoration: "underline" }}>
+            <div className='text-align-center mb-5' style={{ 
+                textAlign: "center",
+                 textDecoration: "underline",
+                 fontWeight : "200px"
+                 }}>
                 <h1 className='text-align-center'>Store</h1>
             </div>
             <div className='d-flex justify-content-center input-group mb-3'>
                 <input
+                onPointerEnter={() => setSearch(dummy)}
                     className='form-control'
                     type="text"
                     value={dummy}
@@ -79,6 +84,17 @@ export default function Catalog() {
             {loading ? (
                 <h2>Loading...</h2>
             ) : (
+                data.data.length === 0?<div style={{height : "100vh", marginTop : "20vh"}}>
+                    <div className='container d-flex justify-content-center align-items-center' style={{height : "250px",width: "350px", backgroundColor : "#fff"}}>
+                    {/* <h1><i class="fa-solid fa-cart-shopping fa-bounce fa-2xl" style={{color: "#cf0743", fontWeight : "600%"}}></i></h1> */}
+                    <div className='container'>
+                        <div className='ml-5' style={{marginLeft : "100px", marginBottom : "70px",marginTop : "20px"}}><h1><i class="fa-solid fa-face-sad-tear fa-bounce fa-2xl" style={{color: "#cf0743", fontWeight : "600%"}}></i></h1>
+                    </div>
+                    <div className='' style={{marginLeft : "40px"}}><p>Item You are looking Not found</p></div>
+                    </div>
+                </div>
+                </div>
+                :
                 <div className="container-cards m-5 ml-5 mr-5" id="product-cards" style={{ display: "flex", flexWrap: "wrap" }}>
                     {data.data.map((item, index) => (
                         <div key={index} className="col-md-3 py-3 py-md-0">

@@ -11,6 +11,15 @@ function ProductData() {
     const myCarousel = useRef(null);
     const carouselThumbs = useRef(null);
 
+    // const color = [ "primary", "secondary", "success", "danger", "warning", "info" ]
+    const color = [ "primary", "secondary", "success", "danger", "warning", "info" ]
+
+    const randomColor = () =>{
+        const res = "table-"+color[Math.floor(Math.random() * color.length)]
+        // console.log(res)
+        return res
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -48,114 +57,113 @@ function ProductData() {
             <NavBar />
             {data ? (
                 <div className='container d-flex'>
-                    <div className="container m-5" style={{ maxWidth: '800px' }}>
-                       <div className="carousel-container position-relative row p-5" style={{background : "#fff" , borderRadius : "0.7em"}}>
-                       <div  className=''>
-                            <div
-                                id="myCarousel"
-                                className="carousel slide m-3"
-                                data-bs-ride="carousel"
-                                ref={myCarousel}
-                            >
-                                <div className="carousel-inner">
-                                    {data.product_images.map((image, index) => (
-                                        <div
-                                            className={`carousel-item ${activeIndex === index ? 'active' : ''}`}
-                                            key={index}
-                                        >
-                                            <img src={image} className="d-block w-100" alt={`Carousel Item ${index + 1}`} />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div
-                                id="carousel-thumbs"
-                                className="carousel slide"
-                                data-bs-ride="carousel"
-                                ref={carouselThumbs}
-                            >
-                                <div className="carousel-inner">
-                                    {data.product_images.map((image, index) => (
-                                        <button
-                                            className={`thumb col-3 col-sm-2 px-1 py-2 ${activeIndex === index ? 'selected' : ''}`}
-                                            key={index}
-                                            onMouseOver={handleThumbsClick(index)}
-                                            onClick={handleThumbsClick(index)}
-
-                                        >
-                                            <img src={image} className="img-fluid" alt={`Thumbnail ${index + 1}`} />
-                                        </button>
-                                    ))}
-                                </div>
-                                <button
-                                    className="carousel-control-prev"
-                                    type="button"
-                                    data-bs-target="#carousel-thumbs"
-                                    data-bs-slide="prev"
+                    <div className="container m-5" style={{ maxWidth: '800px', margin: "100rem" }}>
+                        <div className="carousel-container position-relative row p-5" style={{ background: "#fff", borderRadius: "0.7em", backdropFilter : blur(0.3) }}>
+                            <div className=''>
+                                <div
+                                    id="myCarousel"
+                                    className="carousel slide m-3"
+                                    data-bs-ride="carousel"
+                                    ref={myCarousel}
                                 >
-                                    <span className="carousel-control-prev-icon" aria-hidden="true" />
-                                    <span className="visually-hidden">Previous</span>
-                                </button>
-                                <button
-                                    className="carousel-control-next"
-                                    type="button"
-                                    data-bs-target="#carousel-thumbs"
-                                    data-bs-slide="next"
+                                    <div className="carousel-inner">
+                                        {data.product_images.map((image, index) => (
+                                            <div
+                                                className={`carousel-item ${activeIndex === index ? 'active' : ''}`}
+                                                key={index}
+                                            >
+                                                <img style={{marginBottom: "30px"}} src={image} className="d-block w-100" alt={`Carousel Item ${index + 1}`}  />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div
+                                    id="carousel-thumbs"
+                                    className="carousel slide"
+                                    data-bs-ride="carousel"
+                                    ref={carouselThumbs}
                                 >
-                                    <span className="carousel-control-next-icon" aria-hidden="true" />
-                                    <span className="visually-hidden">Next</span>
-                                </button>
+                                    <div className="carousel-inner">
+                                        {data.product_images.map((image, index) => (
+                                            <button
+                                                className={`thumb col-3 col-sm-2 px-1 py-2 ${activeIndex === index ? 'selected' : ''}`}
+                                                key={index}
+                                                onMouseOver={handleThumbsClick(index)}
+                                                onClick={handleThumbsClick(index)}
+
+                                            >
+                                                <img src={image} className="img-fluid" alt={`Thumbnail ${index + 1}`} />
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <button
+                                        className="carousel-control-prev"
+                                        type="button"
+                                        data-bs-target="#carousel-thumbs"
+                                        data-bs-slide="prev"
+                                    >
+                                        <span className="carousel-control-prev-icon" aria-hidden="true" />
+                                        <span className="visually-hidden">Previous</span>
+                                    </button>
+                                    <button
+                                        className="carousel-control-next"
+                                        type="button"
+                                        data-bs-target="#carousel-thumbs"
+                                        data-bs-slide="next"
+                                    >
+                                        <span className="carousel-control-next-icon" aria-hidden="true" />
+                                        <span className="visually-hidden">Next</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                       </div>
                     </div>
 
                     <div className='container'>
-                        <div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <h4 className='mt-4'>&#x20b9; {data.product_mrp}</h4>
-                                   <div style={{backgroundColor : "#fff" ,width: '650px', borderRadius : "0.7em"}}>
-                                   <table className="table table-bordered table-striped table-hover d-flex justify-content-center ml-0 p-3" style={{ width: '650px' }}>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h4 className='mt-4 text-light'>&#x20b9; {data.product_mrp}</h4>
+                                <div className="p-3" style={{ backgroundColor: "#fff", width: '680px', borderRadius: "0.7em" }}>
+                                    <table className="table table-bordered table-striped table-hover  " style={{ width: '650px' }}>
                                         <tbody>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Product Brand:</th>
                                                 <td>{data.product_brand}</td>
                                             </tr>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Product Name:</th>
                                                 <td>{data.product_name}</td>
                                             </tr>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Product Model:</th>
                                                 <td>{data.product_model}</td>
                                             </tr>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Product Category:</th>
                                                 <td>{data.product_category}</td>
                                             </tr>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Product Sub Category:</th>
                                                 <td>{data.product_sub_category}</td>
                                             </tr>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Product Ratings:</th>
                                                 <td>
                                                     {data.product_ratings}
-                                                    <span style={{ fontSize: "150%", color: "yellow" }}>&#9733;</span>
+                                                    <span style={{ fontSize: "150%", color: "yellow" }}> <span className= {`${randomColor()}`} > &#9733;</span></span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr className={randomColor()}>
                                                 <th>Available Colors:</th>
                                                 <td>{data.available_colors.join(", ")}</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                   </div>
                                 </div>
                             </div>
                         </div>
+
                         <h3 className=''>Store Comparisons:</h3>
                         <div className='d-flex'>
                             {data.stores.map((store, index) => {

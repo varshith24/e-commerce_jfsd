@@ -7,7 +7,6 @@ import Profile from './components/Profile/Profile';
 import WatchList from './components/Cart/WatchList';
 import PageNotFound from './components/Error/PageNotFound';
 import AllFeedBacks from './components/FeedBack/AllFeedBacks';
-import MyCarousel from './components/extra/Corousel';
 import ProductCardEffect from './components/extra/ProductCardEffect';
 
 function App() {

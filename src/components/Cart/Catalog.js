@@ -61,8 +61,10 @@ export default function Catalog() {
             <NavBar />
             <div className='text-align-center mb-5' style={{ 
                 textAlign: "center",
-                 textDecoration: "underline",
-                 fontWeight : "200px"
+                 fontSize : "72px",
+                 textTransform : "uppercase",
+                 mixBlendMode : "overlay",
+                 marginTop : "3%"
                  }}>
                 <h1 className='text-align-center'>Store</h1>
             </div>

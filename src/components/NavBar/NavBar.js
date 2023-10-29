@@ -8,7 +8,8 @@ export default function NavBar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
             <div className="container-fluid">
-                <Link to="/home" className="navbar-brand Nav-Brand-title">E-Commerce</Link>
+                {/* <Link to="/home" className="navbar-brand Nav-Brand-title">E-Commerce</Link> */}
+                <Link to="/home" className="navbar-brand Nav-Brand-title">Price Pulse</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

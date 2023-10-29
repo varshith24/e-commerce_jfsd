@@ -67,7 +67,7 @@ function ProductData() {
                                                 className={`carousel-item ${activeIndex === index ? 'active' : ''}`}
                                                 key={index}
                                             >
-                                                <img style={{marginBottom: "30px"}} src={image} className="d-block w-100" alt={`Carousel Item ${index + 1}`}  />
+                                                <img style={{marginBottom: "40px"}} src={image} className="d-block w-100" alt={`Carousel Item ${index + 1}`}  />
                                             </div>
                                         ))}
                                     </div>

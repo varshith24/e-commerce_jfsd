@@ -67,7 +67,11 @@ export default function Catalog() {
             </div>
             <div className='d-flex justify-content-center input-group mb-3'>
                 <input
-                onPointerEnter={() => setSearch(dummy)}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setSearch(dummy);
+                    }
+                  }}
                     className='form-control'
                     type="text"
                     value={dummy}

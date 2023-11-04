@@ -18,13 +18,13 @@ export default function NavBar() {
             message: '+20 vista badge earned',
         },
         {
-            id: 2,
+            id: 3,
             imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
             name: 'John Silvester',
             message: '+20 vista badge earned',
         },
         {
-            id: 2,
+            id: 4,
             imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
             name: 'John Silvester',
             message: '+20 vista badge earned',
@@ -50,7 +50,7 @@ export default function NavBar() {
                             <NavLink to="/home" exact className="nav-link" activeClassName="active">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/features" className="nav-link">Features</Link>
+                            <Link to="/contact" className="nav-link">Contact us</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/pricing" className="nav-link">Pricing</Link>

@@ -9,6 +9,8 @@ import AllFeedBacks from './components/FeedBack/AllFeedBacks';
 import ProductCardEffect from './components/extra/ProductCardEffect';
 import Login from './components/Login/Login';
 import Register from './components/Login/Register';
+import Contact from './components/Contact/Contact';
+import ShowAllContacts from './components/Admin/contact/ShowAllContacts';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path='/corou' element={<ProductCardEffect/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          <Route path='/contacts' element={<ShowAllContacts/>}/>
           <Route path='*' element={<PageNotFound/>}/>
         </Routes>
       </BrowserRouter>

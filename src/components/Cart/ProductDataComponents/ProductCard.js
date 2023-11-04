@@ -51,7 +51,7 @@ function ProductCard({item}) {
                                         Know More
                                     </button> */}
                 <Link to={`/product/${item.product_id}`} className="btn btn-primary m-2">Know More</Link>
-                <button className='btn' style={{backgroundColor : "#90EE90"}} onClick={handleToCart}><i class="fa-solid fa-cart-plus fa-lg" style={{color: "#00f"}}></i> Add to cart</button>
+                <button className='btn' style={{backgroundColor : "#90EE90"}} onClick={handleToCart}><i class="fa-solid fa-cart-plus fa-lg" style={{color: "#f00"}}></i> Add to cart</button>
             </div>
         </div>
     )

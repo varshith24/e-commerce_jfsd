@@ -38,7 +38,15 @@ export default function WatchList() {
     <div>
       <NavBar />
       <div className='container'>
-        <h2>My Watch WatchList</h2>
+      <div className='text-align-center mb-5' style={{ 
+                textAlign: "center",
+                 fontSize : "72px",
+                 textTransform : "uppercase",
+                 mixBlendMode : "overlay",
+                 marginTop : "3%"
+                 }}>
+                <h1 className='text-align-center'>WatchList</h1>
+            </div>
         <div className='d-flex flex-wrap justify-content-center'>
 
           {data ? (
@@ -54,7 +62,7 @@ export default function WatchList() {
                       <p className="card-text">Category : {item.category}</p>
                       <h3 className="card-text"><small className="text-muted">&#x20b9; {item.price}</small></h3>
                       <div>
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {
+                        <button type="button" className="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => {
                           setModal(item);
                         }}>Know More</button>
                         <button className='btn btn-danger' onClick={() => handleDeleteProduct(item.id)}>Delete Product</button>

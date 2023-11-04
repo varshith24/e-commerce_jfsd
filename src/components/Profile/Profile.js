@@ -31,11 +31,11 @@ function Profile() {
             </ul>
             <ul>
                 <h3>Gender</h3>
-                <li>male</li>
+                <li>{data.gender}</li>
             </ul>
             <ul>
-                <h3>Country</h3>
-                <li>India</li>
+                <h3>location</h3>
+                <li>{data.location}</li>
             </ul>
             <ul>
                 <h3>More Info</h3>
@@ -48,7 +48,7 @@ function Profile() {
             </ul>
             <ul>
                 <h3>Contact</h3>
-                <li>{data.email}</li>
+                <li>{data.phno}</li>
             </ul>
         </div>
     </div>

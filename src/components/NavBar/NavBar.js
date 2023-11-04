@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom'; // Import Link and NavLink
 import './NavBar.css'; // Make sure to import your CSS file
 
 export default function NavBar() {
     const data = JSON.parse(localStorage.getItem("userData"));
+    const initialNotifications = [
+        {
+            id: 1,
+            imageSrc: 'https://i.imgur.com/uIgDDDd.jpg',
+            name: 'Samso aliao',
+            message: 'Samso Nagaro Like your homework',
+        },
+        {
+            id: 2,
+            imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
+            name: 'John Silvester',
+            message: '+20 vista badge earned',
+        },
+        {
+            id: 2,
+            imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
+            name: 'John Silvester',
+            message: '+20 vista badge earned',
+        },
+        {
+            id: 2,
+            imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
+            name: 'John Silvester',
+            message: '+20 vista badge earned',
+        },
+        // Add more notification objects here if needed
+    ];
+    const [down, setDown] = useState(false);
+    const toggleBox = () => {
+        setDown((prevState) => !prevState);
+    };
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
@@ -39,22 +70,36 @@ export default function NavBar() {
                 {/* Adding right */}
                 <div className="d-flex align-items-center justify-content-end">
                     <Link to="/watchlist" className="text-reset me-3">
-                        <i className="fas fa-shopping-cart" style={{fontSize:"150%"}}></i>
+                        <i className="fas fa-shopping-cart" style={{ fontSize: "150%" }}></i>
                     </Link>
 
-                    <div className="dropdown">
-                        <Link
+                    <div className="nav-item">
+                        {/* <Link
                             className="text-reset me-3 dropdown-toggle"
                             to="#"
                             id="navbarDropdownMenuLink"
                             role="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
-                        >
-                            <i className="fas fa-bell"></i>
-                            <span className="badge rounded-pill bg-danger">1</span>
-                        </Link>
-                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        > */}
+                        <div className="icon" id="bell" onClick={toggleBox}>
+                        <i class="fa-solid fa-bell fa-shake fa-lg p-3" style={{color: "#000"}}></i>
+                        {/* <span className="badge rounded-pill bg-danger">1</span> */}
+                        </div>
+                        <div className="notifications" id="box" style={{ height: down ? 'auto' : '0px', opacity: down ? 1 : 0 }}>
+                            <h2 className='noti-heading'>Notifications - <span>{initialNotifications.length}</span></h2>
+                            {initialNotifications.map((notification) => (
+                                <div className="notifications-item" key={notification.id}>
+                                    <img src={notification.imageSrc} alt="img" />
+                                    <div className="text">
+                                        <h4>{notification.name}</h4>
+                                        <p>{notification.message}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {/* </Link> */}
+                        {/* <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
                                 <Link className="dropdown-item" to="#">Some news</Link>
                             </li>
@@ -64,7 +109,7 @@ export default function NavBar() {
                             <li>
                                 <Link className="dropdown-item" to="#">Something else here</Link>
                             </li>
-                        </ul>
+                        </ul> */}
                     </div>
                     <div className="dropdown">
                         <Link
@@ -75,16 +120,16 @@ export default function NavBar() {
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            
+
                             <img
                                 src={data.url}
                                 className=" img-xl rounded-circle"
-                                
+
                                 height="40"
-                                alt="Black and White Portrait of Link Man"
+                                alt="profile"
                                 loading="lazy"
                             />
-                            
+
                         </Link>
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>

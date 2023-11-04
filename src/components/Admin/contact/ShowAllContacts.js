@@ -29,6 +29,22 @@ function ShowAllContacts() {
       });
   }, []);
 
+  const handleDeleteContact = (id) => {
+    ContactService.deleteById(id).then(() => {
+      toast.error('🦄 Wow so easy!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+    })
+    window.location.reload()
+  }
+
   return (
     <div>
       <NavBar />
@@ -65,7 +81,7 @@ function ShowAllContacts() {
                   >
                     <i class="fa-solid fa-eye" style={{ color: "#fff" }}></i>
                   </Link>
-                  <Link className='btn btn-danger'><i class="fa-solid fa-trash" style={{ color: "#fff" }}></i></Link>
+                  <button className='btn btn-danger' onClick={() => handleDeleteContact(item.id)}><i class="fa-solid fa-trash" style={{ color: "#fff" }}></i></button>
                 </td>
               </tr>
             ))}
@@ -83,7 +99,7 @@ function ShowAllContacts() {
               <div className='d-flex justify-content-evenly'>
                 <div>
                   <div>
-                    <img src={modal.url} alt='profile' style={{ width: "150px", height: "150px", marginRight : "0.7rem", marginBottom : "0.7em" }}  />
+                    <img src={modal.url} alt='profile' style={{ width: "150px", height: "150px", marginRight: "0.7rem", marginBottom: "0.7em" }} />
                   </div>
                   <div>
                     <h4>{modal.username}</h4>

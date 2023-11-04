@@ -30,7 +30,6 @@ function ProductCard({item}) {
             });
         }
     }
-
     return (
         <div className="card m-2">
             <img src={item.product_image} alt={item.product_title} className='m-5' />

@@ -10,5 +10,8 @@ class ContactService{
     async getAllContact(){
         return await axios.get(`${URL}/all`)
     }
+    async deleteById(id){
+        return await axios.delete(`${URL}/delete/${id}`);
+    }
 }
 export default new ContactService();

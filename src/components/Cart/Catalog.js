@@ -14,31 +14,7 @@ export default function Catalog() {
     const [dummy, setDummy] = useState('');
     // const [modal, setModal] = useState(null);
 
-    // const handleToCart = (e) => {
-    //     e.preventDefault();
-    //     if (modal) {
-    //         const data = {
-    //             "pid": modal.product_id,
-    //             "name": modal.product_title,
-    //             "url": modal.product_image,
-    //             "price": modal.product_lowest_price,
-    //             "email": userData.email,
-    //             "category": modal.product_category
-    //         };
-    //         ProductService.saveUser(data);
-    //         toast.success('🛒 Data Added to Cart!', {
-    //             position: "top-right",
-    //             autoClose: 5000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: "colored",
-    //         });
-    //     }
-    // }
-
+    
     useEffect(() => {
         setLoading(true);
 
@@ -91,7 +67,8 @@ export default function Catalog() {
             {loading ? (
                 <h2>Loading...</h2>
             ) : (
-                data.data.length === 0?<div style={{height : "100vh", marginTop : "20vh"}}>
+                data.length === 0 ? <h2>Loading...</h2>:
+                data.data.length === 0  ?<div style={{height : "100vh", marginTop : "20vh"}}>
                     <div className='container d-flex justify-content-center align-items-center' style={{height : "250px",width: "350px", backgroundColor : "#fff"}}>
                     {/* <h1><i class="fa-solid fa-cart-shopping fa-bounce fa-2xl" style={{color: "#cf0743", fontWeight : "600%"}}></i></h1> */}
                     <div className='container'>

@@ -38,9 +38,10 @@ function PriceTable({ data }) {
                         {/* <span> <i className="fa-solid fa-star fa-beat" style={{ color: "#e8e34f" }}></i></span> */}
                         {
                             [...Array(Math.floor(data.product_ratings))].map((_, index) => (
-                                <span key={index}> <i className="fa-solid fa-star fa-beat" style={{ color: "#e8e34f" }}></i></span>
+                                <span key={index}> <i className="fa-solid fa-star fa-beat" style={{ color: "#f00" }}></i></span>
                             ))
                         }
+
                     </td>
 
                 </tr>

@@ -39,14 +39,14 @@ export default function WatchList() {
       <NavBar />
       <div className='container'>
         <h2>My Watch WatchList</h2>
-        <div className='d-flex flex-wrap'>
+        <div className='d-flex flex-wrap justify-content-center'>
 
           {data ? (
             data.map((item, index) => (
-              <div key={index} className="card m-3" style={{ maxWidth: "540px" }}>
+              <div key={index} className="card m-2" style={{ maxWidth: "540px" }}>
                 <div className="row g-0">
                   <div className="col-md-4">
-                    <img src={item.url} className="img-fluid rounded-start" alt="..." />
+                    <img src={item.url} className="img-fluid rounded-start m-3" alt="..." />
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">

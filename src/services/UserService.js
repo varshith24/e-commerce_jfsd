@@ -9,6 +9,11 @@ class UserService {
     async getLoginEmail(email, data) {
        return  axios.post(`${URL}/email/${email}`, data)
     }
-}
 
-export default new UserService();
+    async getAllUsers(){
+        return axios.get(`${URL}/all`)
+    }
+
+}
+const a = new UserService();
+export default a;

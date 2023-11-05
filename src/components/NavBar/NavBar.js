@@ -1,41 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom'; // Import Link and NavLink
 import './NavBar.css'; // Make sure to import your CSS file
+import NotificationService from '../../services/NotificationService';
 
 export default function NavBar() {
     const data = JSON.parse(localStorage.getItem("userData"));
-    const initialNotifications = [
-        {
-            id: 1,
-            imageSrc: 'https://i.imgur.com/uIgDDDd.jpg',
-            name: 'Samso aliao',
-            message: 'Samso Nagaro Like your homework',
-        },
-        {
-            id: 2,
-            imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
-            name: 'John Silvester',
-            message: '+20 vista badge earned',
-        },
-        {
-            id: 3,
-            imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
-            name: 'John Silvester',
-            message: '+20 vista badge earned',
-        },
-        {
-            id: 4,
-            imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
-            name: 'John Silvester',
-            message: '+20 vista badge earned',
-        },
-        // Add more notification objects here if needed
-    ];
+    const [initialNotifications, setInitialNotifications ] = useState([])
+    // [
+    //     {
+    //         id: 1,
+    //         imageSrc: 'https://i.imgur.com/uIgDDDd.jpg',
+    //         name: 'Samso aliao',
+    //         message: 'Samso Nagaro Like your homework',
+    //     },
+    //     {
+    //         id: 2,
+    //         imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
+    //         name: 'John Silvester',
+    //         message: '+20 vista badge earned',
+    //     },
+    //     {
+    //         id: 3,
+    //         imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
+    //         name: 'John Silvester',
+    //         message: '+20 vista badge earned',
+    //     },
+    //     {
+    //         id: 4,
+    //         imageSrc: 'https://img.icons8.com/flat_round/64/000000/vote-badge.png',
+    //         name: 'John Silvester',
+    //         message: '+20 vista badge earned',
+    //     },
+    //     // Add more notification objects here if needed
+    // ]
     const [down, setDown] = useState(false);
     const toggleBox = () => {
         setDown((prevState) => !prevState);
     };
-
+    useEffect(() => {
+        NotificationService.allNotifications()
+            .then((res) => {
+                setInitialNotifications(res.data);
+                console.log(data) // Assuming notifications are in res.data
+            })
+            .catch((error) => {
+                console.error('Error fetching notifications:', error);
+            });
+    }, []);
     return (
         <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#e3f2fd" }}>
             <div className="container-fluid">
@@ -55,7 +66,9 @@ export default function NavBar() {
                         <li className="nav-item">
                             <Link to="/pricing" className="nav-link">Pricing</Link>
                         </li>
-                        <li className="nav-item dropdown">
+                        {
+                            data.isAdmin === true ?
+                            <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown link
                             </Link>
@@ -64,7 +77,8 @@ export default function NavBar() {
                                 <li><Link to="/another-action" className="dropdown-item">Another action</Link></li>
                                 <li><Link to="/something-else" className="dropdown-item">Something else here</Link></li>
                             </ul>
-                        </li>
+                        </li> : null
+                        }
                     </ul>
                 </div>
                 {/* Adding right */}
@@ -90,9 +104,9 @@ export default function NavBar() {
                             <h2 className='noti-heading'>Notifications - <span>{initialNotifications.length}</span></h2>
                             {initialNotifications.map((notification) => (
                                 <div className="notifications-item" key={notification.id}>
-                                    <img src={notification.imageSrc} alt="img" />
+                                    <img src={notification.url} alt="img" />
                                     <div className="text">
-                                        <h4>{notification.name}</h4>
+                                        <h4>{notification.username}</h4>
                                         <p>{notification.message}</p>
                                     </div>
                                 </div>

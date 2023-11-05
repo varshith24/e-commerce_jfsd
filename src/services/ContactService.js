@@ -14,4 +14,5 @@ class ContactService{
         return await axios.delete(`${URL}/delete/${id}`);
     }
 }
-export default new ContactService();
+const a = new ContactService();
+export default a;

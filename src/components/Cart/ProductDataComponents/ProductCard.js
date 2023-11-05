@@ -1,11 +1,9 @@
 import React from 'react'
-import { useState } from 'react';
-import { Link, json } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { Link} from 'react-router-dom'
+import { toast } from 'react-toastify';
 import ProductService from '../../../services/ProductService';
 function ProductCard({item}) {
     const userData = JSON.parse(localStorage.getItem("userData"))
-    const [modal , setModal] = useState(null)
     const handleToCart = (e) => {
         e.preventDefault();
         if (item) {

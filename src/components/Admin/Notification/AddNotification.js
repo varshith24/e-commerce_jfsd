@@ -9,7 +9,7 @@ function AddNotification() {
     const username = userData.username
     const url = userData.url
     const [message, setMessage] = useState("")
-
+    
     const handleNotification = (e) => {
         e.preventDefault()
         const dt = { url, email, message, username }

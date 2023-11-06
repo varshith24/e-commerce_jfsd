@@ -70,12 +70,12 @@ export default function NavBar() {
                             data.isAdmin === true ?
                             <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown link
+                                Admin
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><Link to="/action" className="dropdown-item">Action</Link></li>
-                                <li><Link to="/another-action" className="dropdown-item">Another action</Link></li>
-                                <li><Link to="/something-else" className="dropdown-item">Something else here</Link></li>
+                                <li><Link to="/contacts" className="dropdown-item">Contacts</Link></li>
+                                <li><Link to="/users" className="dropdown-item">Users</Link></li>
+                                <li><Link to="/addnotification" className="dropdown-item">Add Notification</Link></li>
                             </ul>
                         </li> : null
                         }
@@ -98,9 +98,10 @@ export default function NavBar() {
                         > */}
                         <div className="icon" id="bell" onClick={toggleBox}>
                         <i class="fa-solid fa-bell fa-shake fa-lg p-3" style={{color: "#000"}}></i>
-                        {/* <span className="badge rounded-pill bg-danger">1</span> */}
+                        <span className="badge rounded-pill bg-danger">{initialNotifications.length}</span>
                         </div>
                         <div className="notifications" id="box" style={{ height: down ? 'auto' : '0px', opacity: down ? 1 : 0 }}>
+                            <div>
                             <h2 className='noti-heading'>Notifications - <span>{initialNotifications.length}</span></h2>
                             {initialNotifications.map((notification) => (
                                 <div className="notifications-item" key={notification.id}>
@@ -111,6 +112,7 @@ export default function NavBar() {
                                     </div>
                                 </div>
                             ))}
+                            </div>
                         </div>
                         {/* </Link> */}
                         {/* <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">

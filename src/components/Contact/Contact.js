@@ -13,7 +13,7 @@ function Contact() {
   const url = data.url
   const handleAddContact = () => {
     const dt = { username, email, subject, message, url };
-    console.log(dt)
+    // console.log(dt)
     ContactService.addContact(dt)
     toast.success('🦄 Wow so easy!', {
         position: "top-right",

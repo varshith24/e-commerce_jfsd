@@ -26,6 +26,7 @@ function Users() {
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th>User ID</th>
                             <th scope="col">User name</th>
                             <th scope="col">email</th>
                             <th scope="col">Phone Number</th>
@@ -37,8 +38,9 @@ function Users() {
                     <tbody className="table-striped">
                         {
                             data.map((item, index) => (
-                                <tr key={index}>
+                                <tr key={index} className='p-5'>
                                     <td>{index + 1}</td>
+                                    <td>{item.id}</td>
                                     <td>
                                         <img src={item.url} alt="User Avatar" style={{ height: "30px", width: "30px", borderRadius: "50%", marginRight: "0.7rem" }} />
                                         {item.username}

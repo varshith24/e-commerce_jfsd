@@ -53,6 +53,7 @@ function ShowAllContacts() {
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">User Id</th>
               <th scope="col">User name</th>
               <th scope="col">email</th>
               <th scope="col">Subject</th>
@@ -63,6 +64,7 @@ function ShowAllContacts() {
             {data.map((item, index) => (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
+                <td>{item.id}</td>
                 <td>
                   <img src={item.url} alt="User Avatar" style={{ height: "30px", width: "30px", borderRadius: "50%", marginRight: "0.7rem" }} />
                   {item.username}

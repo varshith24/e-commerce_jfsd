@@ -48,8 +48,8 @@ export default function WatchList() {
                 <h1 className='text-align-center'>WatchList</h1>
             </div>
         <div className='d-flex flex-wrap justify-content-center'>
-
-          {data ? (
+                 {console.log(data)}
+          {data ? data.length!==0 ?(
             data.map((item, index) => (
               <div key={index} className="card m-2" style={{ maxWidth: "540px" }}>
                 <div className="row g-0">
@@ -73,7 +73,16 @@ export default function WatchList() {
                 </div>
               </div>
             ))
-          ) : (
+          ):<div style={{ height: "80vh", marginTop: "20vh" }}>
+          <div className='container d-flex justify-content-center align-items-center' style={{ height: "150px", width: "350px" }}>
+              {/* <h1><i class="fa-solid fa-cart-shopping fa-bounce fa-2xl" style={{color: "#cf0743", fontWeight : "600%"}}></i></h1> */}
+              <div className='card'>
+                  <div className='ml-5' style={{ marginLeft: "100px", marginBottom: "70px", marginTop: "20px" }}><h1><i class="fa-solid fa-face-sad-tear fa-bounce fa-2xl" style={{ color: "#cf0743", fontWeight: "600%" }}></i></h1>
+                  </div>
+                  <div className='' style={{ marginLeft: "40px" }}><p>No Data Found Please Add to See Here</p></div>
+                  </div>
+          </div>
+      </div> : (
             <h2>Loading...</h2>
           )}
         </div>

@@ -1,36 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../NavBar/NavBar';
-import ProductService from '../../services/ProductService';
-import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductCard from './ProductDataComponents/ProductCard';
 
 export default function Catalog() {
-    const userData = JSON.parse(localStorage.getItem("userData"));
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('phone');
     const [dummy, setDummy] = useState('');
-    const [dummy2, setDummy2] = useState(0);
-    const [dummy3, setDummy3] = useState(99999999);
     // const [modal, setModal] = useState(null);
-    const [toogle, setToogle] = useState(false) 
-
-    const [startPrice, setStartPrice] = useState(0)
-    const [endPrice, setEndPrice] = useState(100000)
-
-    const handleFilter = ()=>{
-        setStartPrice(dummy2)
-        setEndPrice(dummy3)
-        setToogle(!toogle)
-    }
     // "https://price-api.datayuge.com/api/v1/compare/search?api_key=DyzyY7aX3TQmSdGw9S891NtxnDytQxyPbsO&product=${productName}&price_start=${priceStart}&price_end=${priceEnd}&page=1"
     useEffect(() => {
         setLoading(true);
     
         fetch(
-            `https://price-api.datayuge.com/api/v1/compare/search?api_key=DyzyY7aX3TQmSdGw9S891NtxnDytQxyPbsO&product=${search}&price_start=${startPrice}&price_end=${endPrice}&sort=popularity&page=1`
+            `https://price-api.datayuge.com/api/v1/compare/search?api_key=DyzyY7aX3TQmSdGw9S891NtxnDytQxyPbsO&product=${search}&sort=popularity&page=1`
         )
             .then((res) => res.json())
             .then((res) => {
@@ -41,7 +26,7 @@ export default function Catalog() {
                 console.error(error);
                 setLoading(false);
             });
-    }, [search, toogle, startPrice, endPrice]);
+    }, [search]);
     
     return (
         <div>
@@ -73,17 +58,6 @@ export default function Catalog() {
                     Search
                 </button>
             </div>
-            <div>
-                <h2>Choose You Range</h2>
-                <input type='text' value={dummy2} onChange={(e) => { setDummy2(e.target.value) }} />
-                <input type='text' value={dummy3} onChange={(e) => { setDummy3(e.target.value) }} />
-                <button className='btn btn-primary' onClick={()=>handleFilter()}>Filter</button>
-            </div>
-            <div className='d-flex justify-content-around'>
-                <button className='btn btn-primary' onClick={() => setSearch("mobiles")}>Mobiles</button>
-                <button className='btn btn-primary' onClick={()=> setSearch("Electronics")}>Electronics</button>
-                <button className='btn btn-primary' onClick={()=> setSearch("laptops")}>Laptops</button>
-          </div>
             {loading ? (
                 <h2>Loading...</h2>
             ) : (

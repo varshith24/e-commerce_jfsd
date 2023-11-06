@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import './ProductData.css'; // Ensure that you have the correct CSS file imported.
 import PriceTable from './ProductDataComponents/PriceTable';
@@ -117,7 +117,7 @@ function ProductData() {
                     <div className='container'>
                         <div className="row">
                             <div className="col-md-6">
-                                <h4 className='mt-4 text-light'>&#x20b9; {data.product_mrp}</h4>
+                                <h1 className='mt-4 text-light'>&#x20b9; {data.product_mrp}</h1>
                                 <div className="p-3" style={{ backgroundColor: "#fff", width: '680px', borderRadius: "0.7em" }}>
                                    <PriceTable data = {data}/>
                                 </div>

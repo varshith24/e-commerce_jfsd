@@ -13,7 +13,14 @@ class UserService {
     async getAllUsers(){
         return axios.get(`${URL}/all`)
     }
-
+    async deleteUser(id)
+    {
+        return axios.delete(`${URL}/delete/${id}`)
+    }
+    async UpdateActive(id)
+    {
+        return axios.put(`${URL}/active/${id}`,id)
+    }
 }
 const a = new UserService();
 export default a;

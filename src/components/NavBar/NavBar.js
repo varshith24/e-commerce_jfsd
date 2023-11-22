@@ -83,7 +83,7 @@ export default function NavBar() {
                 </div>
                 {/* Adding right */}
                 <div className="d-flex align-items-center justify-content-end">
-                    <Link to="/watchlist" className="text-reset me-3">
+                    <Link to="/watchlist" className="text-reset">
                         <i className="fas fa-shopping-cart" style={{ fontSize: "150%" }}></i>
                     </Link>
 

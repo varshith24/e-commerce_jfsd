@@ -13,11 +13,12 @@ function Register() {
     const [gender, setGender] = useState("male")
     const isAdmin =false
     const loginsuccess = false 
+    const isActive = true
     const navigate = useNavigate()
     const handleRegistration = async (e) => {
         e.preventDefault()
         console.log("Registration")
-        const data = { username, email, password, url, phno, location, gender, isAdmin,loginsuccess }
+        const data = { username, email, password, url, phno, location, gender, isAdmin,loginsuccess, isActive }
         console.log(data)
         await UserService.addUser(data);
         localStorage.setItem("userData", JSON.stringify(data))

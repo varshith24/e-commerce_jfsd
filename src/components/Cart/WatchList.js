@@ -14,7 +14,9 @@ export default function WatchList() {
     email: 'user@gmail.com',
     category: 'mobile'
   });
-
+  const handleDeleteProduct = (id) => {
+    ProductService.deleteProduct(id);
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,12 +29,9 @@ export default function WatchList() {
     };
 
     fetchData();
-  }, []);
+  }, [handleDeleteProduct]);
 
-  const handleDeleteProduct = (id) => {
-    ProductService.deleteProduct(id);
-    window.location.reload()
-  }
+  
 
   return (
     <div>

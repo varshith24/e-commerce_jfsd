@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ContactService from '../../../services/ContactService';
 import NavBar from '../../NavBar/NavBar';
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 function ShowAllContacts() {
   const [data, setData] = useState([]);
@@ -14,6 +15,22 @@ function ShowAllContacts() {
     message:
       '🎉 Shop till you drop! Explore our latest collection and enjoy exclusive discounts. Don\'t miss out on the hottest deals of the season. 🛍️ Shop now and treat yourself to something special. Happy shopping!'
   })
+  const [toogle, setToogle] = useState(true)
+  const DeleteContact = (id) => {
+    ContactService.deleteById(id).then((res) => {
+      console.log(res)
+      toast.error('🦄 Wow so easy!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+    })
+  }
   useEffect(() => {
     ContactService.getAllContact()
       .then((res) => {
@@ -27,23 +44,9 @@ function ShowAllContacts() {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [toogle]);
 
-  const handleDeleteContact = (id) => {
-    ContactService.deleteById(id).then(() => {
-      toast.error('🦄 Wow so easy!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      })
-    })
-    window.location.reload()
-  }
+  
 
   return (
     <div>
@@ -83,7 +86,7 @@ function ShowAllContacts() {
                   >
                     <i class="fa-solid fa-eye" style={{ color: "#fff" }}></i>
                   </Link>
-                  <button className='btn btn-danger' onClick={() => handleDeleteContact(item.id)}><i class="fa-solid fa-trash" style={{ color: "#fff" }}></i></button>
+                  <Link className='btn btn-danger' onClick={() =>{DeleteContact(item.id);setToogle(!toogle)}}><i class="fa-solid fa-trash" style={{ color: "#fff" }}></i></Link>
                 </td>
               </tr>
             ))}
@@ -124,6 +127,18 @@ function ShowAllContacts() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
